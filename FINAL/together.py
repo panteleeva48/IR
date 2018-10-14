@@ -333,24 +333,39 @@ def first():
         query = request.form['query']
         if 'inverted_index' in request.form:
             answers = search("inverted_index", query, model_without_pos, model_doc2vec, df['w2v_tfidf'], df['d2v_hypo'], df['id_answer'], 'tfidf', 'del', len(df['id_answer']), len(data['description']), top=5)
-            answers = list_ans(answers)
-            return render_template('index.html', answers=answers)
-        elif  'word2vec' in request.form:
+            if answers == 'Неправильный запрос!':
+                return render_template('index.html', answers=[["Неправильный запрос, попробуйте ввести по-другому", "", "", "", "", "", ""]])
+            else:
+                answers = list_ans(answers)
+                return render_template('index.html', answers=answers)
+        elif 'word2vec' in request.form:
             answers = search("word2vec", query, model_without_pos, model_doc2vec, df['w2v_tfidf'], df['d2v_hypo'], df['id_answer'], 'tfidf', 'del', len(df['id_answer']), len(data['description']), top=5)
-            answers = list_ans(answers)
-            return render_template('index.html', answers=answers)
-        elif  'doc2vec' in request.form:
+            if answers == 'Неправильный запрос!':
+                return render_template('index.html', answers=[["Неправильный запрос, попробуйте ввести по-другому", "", "", "", "", "", ""]])
+            else:
+                answers = list_ans(answers)
+                return render_template('index.html', answers=answers)
+        elif 'doc2vec' in request.form:
             answers = search("doc2vec", query, model_without_pos, model_doc2vec, df['w2v_tfidf'], df['d2v_hypo'], df['id_answer'], 'tfidf', 'del', len(df['id_answer']), len(data['description']), top=5)
-            answers = list_ans(answers)
-            return render_template('index.html', answers=answers)
-        elif  'doc2vec+word2vec' in request.form:
+            if answers == 'Неправильный запрос!':
+                return render_template('index.html', answers=[["Неправильный запрос, попробуйте ввести по-другому", "", "", "", "", "", ""]])
+            else:
+                answers = list_ans(answers)
+                return render_template('index.html', answers=answers)
+        elif 'doc2vec+word2vec' in request.form:
             answers = search("doc2vec+word2vec", query, model_without_pos, model_doc2vec, df['w2v_tfidf'], df['d2v_hypo'], df['id_answer'], 'tfidf', 'del', len(df['id_answer']), len(data['description']), top=5)
-            answers = list_ans(answers)
-            return render_template('index.html', answers=answers)
-        elif  'word2vec+inverted_index' in request.form:
+            if answers == 'Неправильный запрос!':
+                return render_template('index.html', answers=[["Неправильный запрос, попробуйте ввести по-другому", "", "", "", "", "", ""]])
+            else:
+                answers = list_ans(answers)
+                return render_template('index.html', answers=answers)
+        elif 'word2vec+inverted_index' in request.form:
             answers = search("word2vec+inverted_index", query, model_without_pos, model_doc2vec, df['w2v_tfidf'], df['d2v_hypo'], df['id_answer'], 'tfidf', 'del', len(df['id_answer']), len(data['description']), top=5)
-            answers = list_ans(answers)
-            return render_template('index.html', answers=answers)
+            if answers == 'Неправильный запрос!':
+                return render_template('index.html', answers=[["Неправильный запрос, попробуйте ввести по-другому", "", "", "", "", "", ""]])
+            else:
+                answers = list_ans(answers)
+                return render_template('index.html', answers=answers)
         else:
             return render_template("index.html")
     elif request.method == 'GET':
