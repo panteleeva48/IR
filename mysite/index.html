@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Search page</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<center>
+<img src="/static/dog.jpg" height="250" width="500">
+<form method="post" action="/">
+Your query: <input type="text" name="query"></input><br>
+	<input type="submit" name="inverted_index" value="inverted_index"></input>
+</form>
+<img src="/static/giphy.gif" height="250" width="500"><br>
+{% for answer in answers %}
+---<br>
+<b>Название: </b>{{ answer[0] }}<br>
+<b>Номер и дата объявления: </b>{{ answer[1] }}<br>
+<b>Автор: </b>{{ answer[2] }}<br>
+<b>Адрес: </b>{{ answer[3] }}<br>
+<b>Порода: </b>{{ answer[4] }}<br>
+<b>Цена: </b>{{ answer[5] }}<br>
+<b>Описание: </b>{{ answer[6] }}<br>
+{% endfor %}
+</center>
+</body>
+</html>
